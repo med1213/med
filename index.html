@@ -1,0 +1,1446 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Med Saignalueth — Full Stack Developer" />
+    <meta name="author" content="Med Saignalueth" />
+    <meta
+      name="keywords"
+      content="Med Saignalueth, Full Stack Developer, Web Developer, JavaScript, HTML, CSS, React, Node.js"
+    />
+    <meta name="robots" content="index, follow" />
+    <!-- Favicon -->
+    <link rel="icon" href="./assets/images/med.png" type="image/x-icon" />
+    <title>Med Saignalueth — Full Stack Developer</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --green: #00ff88;
+        --dark: #090c10;
+        --dark2: #0d1117;
+        --dark3: #161b22;
+        --border: rgba(0, 255, 136, 0.15);
+        --text: #e6edf3;
+        --muted: #7d8590;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--dark);
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--dark);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--green);
+        border-radius: 2px;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+        padding: 1.2rem 5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(9, 12, 16, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+      .logo {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 1.3rem;
+        color: var(--text);
+      }
+      .logo em {
+        color: var(--green);
+        font-style: normal;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+      }
+      .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--green);
+      }
+      .btn-primary {
+        background: var(--green);
+        color: var(--dark);
+        padding: 0.65rem 1.4rem;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 0.875rem;
+        text-decoration: none;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 255, 136, 0.3);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--text);
+        padding: 0.65rem 1.4rem;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        font-weight: 500;
+        font-size: 0.875rem;
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      .btn-outline:hover {
+        border-color: var(--green);
+        color: var(--green);
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 8rem 5rem 4rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 55% 55% at 75% 50%,
+          rgba(0, 255, 136, 0.07) 0%,
+          transparent 70%
+        );
+      }
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(0, 255, 136, 0.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 255, 136, 0.025) 1px, transparent 1px);
+        background-size: 64px 64px;
+      }
+      .hero-content {
+        position: relative;
+        max-width: 720px;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(28px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.4;
+          transform: scale(1.5);
+        }
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: rgba(0, 255, 136, 0.07);
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        padding: 0.45rem 1.1rem;
+        font-size: 0.78rem;
+        color: var(--green);
+        font-weight: 600;
+        margin-bottom: 2rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        animation: fadeUp 0.7s ease both;
+      }
+      .hero-badge span {
+        width: 6px;
+        height: 6px;
+        background: var(--green);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+        display: block;
+      }
+      .hero h1 {
+        font-family: "Syne", sans-serif;
+        font-size: clamp(3.2rem, 6.5vw, 5.5rem);
+        font-weight: 800;
+        line-height: 1.02;
+        letter-spacing: -0.03em;
+        animation: fadeUp 0.7s 0.08s ease both;
+      }
+      .hero h1 em {
+        font-style: normal;
+        color: var(--green);
+      }
+      .hero-sub {
+        font-size: 1.1rem;
+        color: var(--muted);
+        margin: 1.5rem 0 2.5rem;
+        max-width: 480px;
+        animation: fadeUp 0.7s 0.16s ease both;
+        line-height: 1.7;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        animation: fadeUp 0.7s 0.24s ease both;
+      }
+      .hero-stats {
+        display: flex;
+        gap: 3.5rem;
+        margin-top: 4.5rem;
+        animation: fadeUp 0.7s 0.32s ease both;
+        border-top: 1px solid var(--border);
+        padding-top: 2.5rem;
+      }
+      .stat-num {
+        font-family: "Syne", sans-serif;
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: var(--green);
+        line-height: 1;
+      }
+      .stat-label {
+        font-size: 0.75rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-top: 0.3rem;
+      }
+
+      /* SECTIONS */
+      section {
+        padding: 6rem 5rem;
+      }
+      .section-tag {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--green);
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        display: block;
+      }
+      .section-title {
+        font-family: "Syne", sans-serif;
+        font-size: clamp(2rem, 3.5vw, 2.8rem);
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        margin-bottom: 0.85rem;
+        line-height: 1.1;
+      }
+      .section-title em {
+        font-style: normal;
+        color: var(--green);
+      }
+      .section-desc {
+        color: var(--muted);
+        max-width: 500px;
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+
+      /* ABOUT */
+      #about {
+        background: var(--dark2);
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 380px 1fr;
+        gap: 5rem;
+        margin-top: 4rem;
+        align-items: start;
+      }
+      .about-photo-col {
+        position: relative;
+      }
+      .photo-frame {
+        position: relative;
+        width: 100%;
+        background: var(--dark3);
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+        aspect-ratio: 3/4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .photo-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        display: block;
+      }
+      .photo-accent {
+        position: absolute;
+        bottom: -1rem;
+        right: -1rem;
+        width: 100px;
+        height: 100px;
+        border: 2px solid var(--green);
+        border-radius: 12px;
+        z-index: -1;
+      }
+      .photo-card {
+        position: absolute;
+        bottom: 1.5rem;
+        left: -1.5rem;
+        background: rgba(13, 17, 23, 0.95);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        backdrop-filter: blur(8px);
+      }
+      .photo-card .num {
+        font-family: "Syne", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--green);
+        line-height: 1;
+      }
+      .photo-card .lbl {
+        font-size: 0.72rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .about-text h3 {
+        font-family: "Syne", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+      }
+      .about-text h3 em {
+        font-style: normal;
+        color: var(--green);
+      }
+      .about-text p {
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.75;
+        margin-bottom: 2rem;
+      }
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem 2rem;
+        margin-bottom: 2rem;
+      }
+      .info-item label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--green);
+        display: block;
+        margin-bottom: 0.2rem;
+      }
+      .info-item span {
+        font-size: 0.88rem;
+        font-weight: 500;
+        color: var(--text);
+      }
+      .info-item a {
+        font-size: 0.88rem;
+        font-weight: 500;
+        color: var(--text);
+        text-decoration: none;
+      }
+      .info-item a:hover {
+        color: var(--green);
+      }
+      .lang-tags {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+      }
+      .lang-tag {
+        background: rgba(0, 255, 136, 0.08);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 0.35rem 0.9rem;
+        font-size: 0.8rem;
+        color: var(--green);
+        font-weight: 600;
+      }
+      .skills-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 0.75rem;
+      }
+      .skill-pill {
+        background: var(--dark3);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 0.45rem 0.85rem;
+        font-size: 0.78rem;
+        color: var(--muted);
+        font-weight: 500;
+        transition: all 0.2s;
+        cursor: default;
+      }
+      .skill-pill:hover {
+        border-color: rgba(0, 255, 136, 0.4);
+        color: var(--green);
+        background: rgba(0, 255, 136, 0.04);
+      }
+
+      /* SERVICES */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 4rem;
+      }
+      .svc-card {
+        background: var(--dark3);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 2rem;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .svc-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--green),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .svc-card:hover {
+        border-color: rgba(0, 255, 136, 0.3);
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+      .svc-card:hover::after {
+        opacity: 1;
+      }
+      .svc-icon {
+        width: 50px;
+        height: 50px;
+        background: rgba(0, 255, 136, 0.1);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        margin-bottom: 1.25rem;
+      }
+      .svc-card h4 {
+        font-family: "Syne", sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 0.6rem;
+      }
+      .svc-card p {
+        color: var(--muted);
+        font-size: 0.875rem;
+        line-height: 1.65;
+      }
+
+      /* RESUME */
+      #resume {
+        background: var(--dark2);
+      }
+      .resume-cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        margin-top: 4rem;
+      }
+      .r-col-title {
+        font-family: "Syne", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .r-col-title em {
+        font-style: normal;
+        color: var(--green);
+      }
+      .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+      .tl-item {
+        background: var(--dark3);
+        border: 1px solid var(--border);
+        border-left: 2px solid var(--green);
+        border-radius: 10px;
+        padding: 1.4rem;
+        transition: border-color 0.2s;
+      }
+      .tl-item:hover {
+        border-color: rgba(0, 255, 136, 0.4);
+      }
+      .tl-date {
+        font-size: 0.7rem;
+        color: var(--green);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        margin-bottom: 0.4rem;
+      }
+      .tl-title {
+        font-family: "Syne", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin-bottom: 0.2rem;
+      }
+      .tl-org {
+        font-size: 0.82rem;
+        color: var(--muted);
+        margin-bottom: 0.8rem;
+      }
+      .tl-desc {
+        font-size: 0.84rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .tl-desc li {
+        margin-left: 1.1rem;
+        margin-bottom: 0.3rem;
+      }
+
+      /* PORTFOLIO */
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 4rem;
+      }
+      .proj-card {
+        background: var(--dark3);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        overflow: hidden;
+        transition: all 0.3s;
+      }
+      .proj-card:hover {
+        border-color: rgba(0, 255, 136, 0.35);
+        transform: translateY(-6px);
+        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+      }
+      .proj-thumb {
+        aspect-ratio: 16/9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        background: var(--dark);
+        position: relative;
+        overflow: hidden;
+      }
+      .proj-thumb::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 255, 136, 0.04),
+          rgba(0, 255, 136, 0.1)
+        );
+      }
+      .proj-body {
+        padding: 1.4rem;
+      }
+      .proj-tags {
+        display: flex;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+        margin-bottom: 0.8rem;
+      }
+      .ptag {
+        font-size: 0.68rem;
+        padding: 0.2rem 0.65rem;
+        border-radius: 4px;
+        background: rgba(0, 255, 136, 0.1);
+        color: var(--green);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .proj-body h4 {
+        font-family: "Syne", sans-serif;
+        font-size: 0.98rem;
+        font-weight: 700;
+        margin-bottom: 0.45rem;
+      }
+      .proj-body p {
+        font-size: 0.84rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .proj-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .pl {
+        font-size: 0.8rem;
+        color: var(--green);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .pl:hover {
+        text-decoration: underline;
+      }
+
+      /* CONTACT */
+      #contact {
+        background: var(--dark2);
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 5rem;
+        margin-top: 4rem;
+        align-items: start;
+      }
+      .contact-items {
+        display: flex;
+        flex-direction: column;
+        gap: 1.4rem;
+        margin-bottom: 2rem;
+      }
+      .c-item {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+      .c-icon {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+        background: rgba(0, 255, 136, 0.08);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+      }
+      .c-item label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        display: block;
+        margin-bottom: 0.2rem;
+      }
+      .c-item span,
+      .c-item a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--text);
+        text-decoration: none;
+      }
+      .c-item a:hover {
+        color: var(--green);
+      }
+      .socials {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+      .soc-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--dark3);
+        border: 1px solid var(--border);
+        padding: 0.55rem 1.1rem;
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+      .soc-btn:hover {
+        border-color: var(--green);
+        color: var(--green);
+      }
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+      }
+      .fg {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+      .fg label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+      }
+      .fg input,
+      .fg textarea {
+        background: var(--dark3);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0.85rem 1rem;
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.9rem;
+        resize: vertical;
+        transition: border-color 0.2s;
+      }
+      .fg input:focus,
+      .fg textarea:focus {
+        outline: none;
+        border-color: var(--green);
+      }
+      .fg textarea {
+        min-height: 120px;
+      }
+
+      /* FOOTER */
+      footer {
+        padding: 1.75rem 5rem;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+      .footer-links {
+        display: flex;
+        gap: 2rem;
+      }
+      .footer-links a {
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--green);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 1024px) {
+        nav,
+        section,
+        footer {
+          padding-left: 2rem;
+          padding-right: 2rem;
+        }
+        .hero {
+          padding: 7rem 2rem 3rem;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        .about-photo-col {
+          max-width: 320px;
+        }
+        .resume-cols,
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+        .services-grid,
+        .portfolio-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 640px) {
+        .nav-links {
+          display: none;
+        }
+        .services-grid,
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-stats {
+          gap: 2rem;
+        }
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+        footer {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">Med<em>.</em></div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#portfolio">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div style="display: flex; gap: 0.75rem; align-items: center">
+        <a href="mailto:med.saignalueth@gmail.com" class="btn-primary"
+          >Hire Me →</a
+        >
+        <a
+          href="./assets/Professional CV Resume.pdf"
+          download="Med_Saignalueth_CV.pdf"
+          class="btn-outline"
+          style="display: inline-flex; align-items: center; gap: 0.4rem"
+          >↓ Download CV</a
+        >
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-grid"></div>
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span></span>Available for new opportunities
+        </div>
+        <h1>Full Stack<br /><em>Developer</em><br />&amp; UX/UI Designer</h1>
+        <p class="hero-sub">
+          Hi, I'm Med Saignalueth — a results-driven developer from Vientiane,
+          Laos. I build scalable web &amp; mobile applications with clean,
+          user-focused design.
+        </p>
+        <div class="hero-actions">
+          <a href="#portfolio" class="btn-primary">View Projects →</a>
+          <a href="#contact" class="btn-outline">Get In Touch</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num">6+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div>
+            <div class="stat-num">4</div>
+            <div class="stat-label">Companies</div>
+          </div>
+          <div>
+            <div class="stat-num">3</div>
+            <div class="stat-label">Languages Spoken</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <span class="section-tag">01 / About</span>
+      <h2 class="section-title">About <em>Myself</em></h2>
+      <div class="about-grid">
+        <div class="about-photo-col">
+          <div class="photo-frame">
+            <img src="./assets/images/profile.JPG" alt="Med Saignalueth" />
+          </div>
+          <div class="photo-accent"></div>
+          <div class="photo-card">
+            <div class="num">6+</div>
+            <div class="lbl">Years of<br />Experience</div>
+          </div>
+        </div>
+        <div class="about-text">
+          <h3>Hey! I'm a <em>Full Stack Developer</em> &amp; UX/UI Designer</h3>
+          <p>
+            Results-driven Full Stack Developer with a strong background in
+            UX/UI Design and modern web &amp; mobile technologies. Adept at
+            developing scalable applications and optimizing system performance.
+            Proficient in ReactJS, NextJS, Angular, Flutter, React Native,
+            NodeJS, NestJS, Python Django, and Linux server administration.
+            Passionate about delivering high-quality software solutions and
+            enhancing user experiences.
+          </p>
+          <div class="info-grid">
+            <div class="info-item">
+              <label>Name</label><span>Med Saignalueth</span>
+            </div>
+            <div class="info-item">
+              <label>Location</label
+              ><span>Nathom, Xaythany District, Vientiane, Laos</span>
+            </div>
+            <div class="info-item">
+              <label>Current Role</label><span>Full Stack Dev @ APB Bank</span>
+            </div>
+            <div class="info-item">
+              <label>Phone</label
+              ><a href="tel:+85620 92888367">+856 20 92 888 367</a>
+            </div>
+            <div class="info-item">
+              <label>Email</label
+              ><a href="mailto:med.saignalueth@gmail.com"
+                >med.saignalueth@gmail.com</a
+              >
+            </div>
+            <div class="info-item">
+              <label>GitHub</label
+              ><a href="https://github.com/med1213" target="_blank">med1213</a>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 1.5rem">
+            <div class="section-tag" style="margin-bottom: 0.75rem">
+              Languages Spoken
+            </div>
+            <div class="lang-tags">
+              <span class="lang-tag">🇬🇧 English</span>
+              <span class="lang-tag">🇹🇭 Thai</span>
+              <span class="lang-tag">🇰🇭 Khmer</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="section-tag" style="margin-bottom: 0.75rem">
+              Technical Skills
+            </div>
+            <div class="skills-wrap">
+              <span class="skill-pill">ReactJS</span>
+              <span class="skill-pill">NextJS</span>
+              <span class="skill-pill">Angular</span>
+              <span class="skill-pill">Flutter</span>
+              <span class="skill-pill">React Native</span>
+              <span class="skill-pill">NodeJS</span>
+              <span class="skill-pill">NestJS</span>
+              <span class="skill-pill">Python Django</span>
+              <span class="skill-pill">PostgreSQL</span>
+              <span class="skill-pill">MongoDB</span>
+              <span class="skill-pill">MySQL</span>
+              <span class="skill-pill">Docker</span>
+              <span class="skill-pill">Linux Server</span>
+              <span class="skill-pill">GitLab / GitHub</span>
+              <span class="skill-pill">UX/UI Design</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <span class="section-tag">02 / Services</span>
+      <h2 class="section-title">My <em>Services</em></h2>
+      <p class="section-desc">
+        End-to-end software development — from beautiful interfaces to scalable
+        backends and cloud deployments.
+      </p>
+      <div class="services-grid">
+        <div class="svc-card reveal">
+          <div class="svc-icon">🎨</div>
+          <h4>UX/UI Design</h4>
+          <p>
+            Designing engaging, user-friendly interfaces that balance aesthetics
+            with usability — from wireframes to polished, responsive designs.
+          </p>
+        </div>
+        <div class="svc-card reveal">
+          <div class="svc-icon">🌐</div>
+          <h4>Frontend Development</h4>
+          <p>
+            Building fast, accessible web apps with ReactJS, NextJS, and Angular
+            — pixel-perfect implementations with great user experiences.
+          </p>
+        </div>
+        <div class="svc-card reveal">
+          <div class="svc-icon">📱</div>
+          <h4>Mobile Development</h4>
+          <p>
+            Cross-platform mobile apps with Flutter and React Native —
+            delivering native-quality experiences on both iOS and Android.
+          </p>
+        </div>
+        <div class="svc-card reveal">
+          <div class="svc-icon">⚙️</div>
+          <h4>Backend Development</h4>
+          <p>
+            Scalable REST APIs and services using NodeJS, NestJS, and Python
+            Django — secure, well-documented, and production-ready.
+          </p>
+        </div>
+        <div class="svc-card reveal">
+          <div class="svc-icon">🗄️</div>
+          <h4>Database Management</h4>
+          <p>
+            Relational and NoSQL database design with MongoDB, MySQL, and
+            PostgreSQL — including schema design and query optimization.
+          </p>
+        </div>
+        <div class="svc-card reveal">
+          <div class="svc-icon">🐧</div>
+          <h4>DevOps &amp; Linux Admin</h4>
+          <p>
+            Server deployment, Docker containerization, and Linux administration
+            — keeping your infrastructure reliable and scalable.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESUME -->
+    <section id="resume">
+      <span class="section-tag">03 / Resume</span>
+      <h2 class="section-title">My <em>Resume</em></h2>
+      <p class="section-desc">
+        A track record of building real-world software across industries — from
+        tech startups to enterprise solutions.
+      </p>
+      <div class="resume-cols">
+        <div>
+          <div class="r-col-title">🎓 <em>Education</em></div>
+          <div class="timeline">
+            <div class="tl-item reveal">
+              <div class="tl-date">2014 – 2019</div>
+              <div class="tl-title">Bachelor of Computer Science</div>
+              <div class="tl-org">Royal University of Phnom Penh</div>
+              <div class="tl-desc">
+                Comprehensive study of software engineering, algorithms, data
+                structures, computer networks, and modern programming paradigms.
+              </div>
+            </div>
+            <div class="tl-item reveal">
+              <div class="tl-date">March 2023</div>
+              <div class="tl-title">Short Course — Linux Administration</div>
+              <div class="tl-org">
+                Faculty of Engineering, NUOL · Vientiane, Laos
+              </div>
+              <div class="tl-desc">
+                Hands-on training in Linux server management, system
+                configuration, networking, and server administration best
+                practices.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="r-col-title">💼 <em>Experience</em></div>
+          <div class="timeline">
+            <div class="tl-item reveal">
+              <div class="tl-date">2025 – Present</div>
+              <div class="tl-title">Full Stack Developer</div>
+              <div class="tl-org">APB Bank · Vientiane, Laos</div>
+              <div class="tl-desc">
+                <ul>
+                  <li>
+                    Developing and maintaining scalable web and mobile
+                    applications
+                  </li>
+                  <li>
+                    Integrating modern technologies and frameworks to optimize
+                    system performance
+                  </li>
+                  <li>
+                    Collaborating with cross-functional teams to enhance UX/UI
+                    and user experience
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="tl-item reveal">
+              <div class="tl-date">2023 – 2025</div>
+              <div class="tl-title">Full Stack Developer</div>
+              <div class="tl-org">Team YES · Vientiane, Laos</div>
+              <div class="tl-desc">
+                <ul>
+                  <li>
+                    Built cross-platform mobile apps using Flutter and React
+                    Native
+                  </li>
+                  <li>
+                    Developed scalable web applications with Angular and ReactJS
+                  </li>
+                  <li>
+                    Designed and maintained RESTful APIs with NestJS and NodeJS
+                  </li>
+                  <li>
+                    Managed relational and NoSQL databases (PostgreSQL, MySQL,
+                    MongoDB)
+                  </li>
+                  <li>
+                    Collaborated with cross-functional teams to deliver
+                    end-to-end features
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="tl-item reveal">
+              <div class="tl-date">2020 – 2022</div>
+              <div class="tl-title">Frontend Developer</div>
+              <div class="tl-org">Olaa NGL · Laos</div>
+              <div class="tl-desc">
+                <ul>
+                  <li>Developed e-commerce website using Angular framework</li>
+                  <li>
+                    Built responsive, user-friendly product listing, cart, and
+                    checkout interfaces
+                  </li>
+                  <li>
+                    Collaborated with backend team to integrate RESTful APIs and
+                    optimize page performance
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="tl-item reveal">
+              <div class="tl-date">2019 – 2020</div>
+              <div class="tl-title">Website Designer (UX/UI)</div>
+              <div class="tl-org">NSO Technology · Cambodia</div>
+              <div class="tl-desc">
+                <ul>
+                  <li>
+                    Designed engaging, user-friendly web interfaces to improve
+                    customer engagement
+                  </li>
+                  <li>
+                    Created responsive and interactive designs to enhance user
+                    experience
+                  </li>
+                  <li>
+                    Collaborated with developers and stakeholders for
+                    cross-platform design consistency
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio">
+      <span class="section-tag">04 / Projects</span>
+      <h2 class="section-title">My <em>Portfolio</em></h2>
+      <p class="section-desc">
+        Selected projects spanning web applications, mobile apps, and open
+        source contributions.
+      </p>
+      <div class="portfolio-grid">
+        <div class="proj-card reveal">
+          <div class="proj-thumb">🏪</div>
+          <div class="proj-body">
+            <div class="proj-tags">
+              <span class="ptag">JavaScript</span
+              ><span class="ptag">React</span>
+            </div>
+            <h4>Med Shop</h4>
+            <p>
+              Full-featured e-commerce application with product listings, cart
+              functionality, and order management.
+            </p>
+            <div class="proj-links">
+              <a
+                href="https://github.com/med1213/med-shop"
+                target="_blank"
+                class="pl"
+                >↗ GitHub</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="proj-card reveal">
+          <div class="proj-thumb">📮</div>
+          <div class="proj-body">
+            <div class="proj-tags">
+              <span class="ptag">Next.js</span
+              ><span class="ptag">TypeScript</span>
+            </div>
+            <h4>Laos Postal</h4>
+            <p>
+              Web application for Laos postal services — streamlining postal
+              code lookup and delivery tracking nationwide.
+            </p>
+            <div class="proj-links">
+              <a
+                href="https://laos-postal.vercel.app/"
+                target="_blank"
+                class="pl"
+                >↗ Live Demo</a
+              >
+              <a href="https://github.com/med1213" target="_blank" class="pl"
+                >↗ GitHub</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="proj-card reveal">
+          <div class="proj-thumb">🧪</div>
+          <div class="proj-body">
+            <div class="proj-tags">
+              <span class="ptag">Python</span><span class="ptag">Testing</span>
+            </div>
+            <h4>Python Unit Tests</h4>
+            <p>
+              Comprehensive unit testing and code coverage reference project — a
+              clean, well-structured testing boilerplate in Python.
+            </p>
+            <div class="proj-links">
+              <a
+                href="https://github.com/med1213/python-unittest"
+                target="_blank"
+                class="pl"
+                >↗ GitHub</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="proj-card reveal">
+          <div class="proj-thumb">🌐</div>
+          <div class="proj-body">
+            <div class="proj-tags">
+              <span class="ptag">React</span><span class="ptag">Netlify</span>
+            </div>
+            <h4>Portfolio Website</h4>
+            <p>
+              Personal portfolio showcasing work experience, skills, and
+              projects as a full stack developer and UX/UI designer.
+            </p>
+            <div class="proj-links">
+              <a
+                href="https://steady-maamoul-b144bd.netlify.app"
+                target="_blank"
+                class="pl"
+                >↗ Live Site</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="proj-card reveal">
+          <div class="proj-thumb">📺</div>
+          <div class="proj-body">
+            <div class="proj-tags">
+              <span class="ptag">YouTube</span><span class="ptag">Tech</span>
+            </div>
+            <h4>MedTech99 — YouTube</h4>
+            <p>
+              Tech tutorials, programming guides, and developer content for the
+              growing Lao developer community.
+            </p>
+            <div class="proj-links">
+              <a
+                href="https://www.youtube.com/@medtech99"
+                target="_blank"
+                class="pl"
+                >↗ Watch Now</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="proj-card reveal">
+          <div class="proj-thumb">⭐</div>
+          <div class="proj-body">
+            <div class="proj-tags">
+              <span class="ptag">Open Source</span
+              ><span class="ptag">34+ Repos</span>
+            </div>
+            <h4>More on GitHub</h4>
+            <p>
+              Explore all public repositories — from experiments and developer
+              tools to production-ready applications.
+            </p>
+            <div class="proj-links">
+              <a
+                href="https://github.com/med1213?tab=repositories"
+                target="_blank"
+                class="pl"
+                >↗ View All Repos</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <span class="section-tag">05 / Contact</span>
+      <h2 class="section-title">Get In <em>Touch</em></h2>
+      <p class="section-desc">
+        Have a project in mind, or just want to connect? I'm always open to
+        interesting conversations and new collaborations.
+      </p>
+      <div class="contact-grid">
+        <div>
+          <div class="contact-items">
+            <div class="c-item reveal">
+              <div class="c-icon">📧</div>
+              <div>
+                <label>Email</label
+                ><a href="mailto:med.saignalueth@gmail.com"
+                  >med.saignalueth@gmail.com</a
+                >
+              </div>
+            </div>
+            <div class="c-item reveal">
+              <div class="c-icon">📞</div>
+              <div>
+                <label>Phone</label
+                ><a href="tel:+85620 92888367">+856 20 92 888 367</a>
+              </div>
+            </div>
+            <div class="c-item reveal">
+              <div class="c-icon">📍</div>
+              <div>
+                <label>Location</label
+                ><span>Nathom, Xaythany District, Vientiane, Laos</span>
+              </div>
+            </div>
+            <div class="c-item reveal">
+              <div class="c-icon">💼</div>
+              <div>
+                <label>Current Role</label
+                ><span>Full Stack Developer @ APB Bank</span>
+              </div>
+            </div>
+          </div>
+          <div class="section-tag" style="margin-bottom: 0.75rem">
+            Find Me Online
+          </div>
+          <div class="socials">
+            <a href="https://github.com/med1213" target="_blank" class="soc-btn"
+              >🐙 GitHub</a
+            >
+            <a
+              href="https://www.youtube.com/@medtech99"
+              target="_blank"
+              class="soc-btn"
+              >📺 YouTube</a
+            >
+            <a
+              href="https://www.facebook.com/medev03"
+              target="_blank"
+              class="soc-btn"
+              >📘 Facebook</a
+            >
+          </div>
+        </div>
+        <div class="contact-form">
+          <div class="fg">
+            <label>Your Name</label><input type="text" placeholder="John Doe" />
+          </div>
+          <div class="fg">
+            <label>Email Address</label
+            ><input type="email" placeholder="john@example.com" />
+          </div>
+          <div class="fg">
+            <label>Subject</label
+            ><input type="text" placeholder="Project Inquiry" />
+          </div>
+          <div class="fg">
+            <label>Message</label
+            ><textarea
+              placeholder="Tell me about your project or idea..."
+            ></textarea>
+          </div>
+          <button
+            class="btn-primary"
+            onclick="window.location = 'mailto:med.saignalueth@gmail.com'"
+          >
+            Send Message →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="logo">Med<em>.</em></div>
+      <div>© 2026 Med Saignalueth · Vientiane, Laos</div>
+      <div class="footer-links">
+        <a href="https://github.com/med1213" target="_blank">GitHub</a>
+        <a href="https://www.youtube.com/@medtech99" target="_blank">YouTube</a>
+        <a href="https://www.facebook.com/medev03" target="_blank">Facebook</a>
+      </div>
+    </footer>
+
+    <script data-cfasync="false">
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>
